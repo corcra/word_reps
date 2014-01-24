@@ -88,7 +88,8 @@ for line in gw:
 
 print '\nVector representations for '+str(n)+' ('+str(100*float(n)/n_total)+'%) words recorded to',outfilename
 
+n_unmatched = str(len(my_set))
 unmatchfile = open('unmatched.txt','w')
-unmatchfile.write(str(len(my_set))+' unmatched words:\n')
 for word in my_set:
     unmatchfile.write(word+'\n')
+print n_unmatched,'words written to unmatched.txt.'
