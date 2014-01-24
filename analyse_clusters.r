@@ -1,11 +1,13 @@
 # author:       Stephanie Hyland (sh985@cornell.edu)
 # date:         January 2014
 # description:  script to analyse clusters manually. Find mean distance to centroid in each cluster, take top 10 clusters by this metric, see members
-# usage:        R --file=analyse_clusters.r --args filepath
+# usage:        source('analyse_clusters.r') in R
 
-args<-commandArgs(TRUE)
-filepath<-args[1]
+#args<-commandArgs(TRUE)
+#filepath<-args[1]
 
+print(list.files())
+filepath<-readline("File? ")
 #filepath = 'm_vecs.clusters.95.txt'
 
 cwords<-function(data,c){
