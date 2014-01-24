@@ -8,6 +8,7 @@
 #
 import sys
 import numpy as np
+sys.path.insert(0, './word_cloud-master/')
 import wordcloud
 
 if len(sys.argv)<3:
@@ -23,7 +24,7 @@ dists = []
 for line in wordlist_file:
     word = line.split()[0]
     cluster = line.split()[1]
-    dist = int(line.split()[2])
+    dist = float(line.split()[2])
     if cluster==cluster_number:
         words.append(word)
         dists.append(dist)
@@ -34,4 +35,4 @@ weights = [max_dist - dist for dist in dists]
 words_array = np.array(words)
 weights_array = np.array(weights)
 
-wordcloud.make_wordcloud(words_array,weights_array,wordlist_name+'.png')
+wordcloud.make_wordcloud(words_array,weights_array,wordlist_name+'.'+cluster_number+'.png')
