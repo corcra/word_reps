@@ -14,9 +14,9 @@
 # 1. try to fit a concentration graph (metric to use? partial correlation may not capture the correct notion of distance, but then you lose the theory behind the graph - requires further consideration), then look for connected clusters
 #
 # usage:        python get_clusters.py word_vecs.txt
-# note:         word_vecs.txt should consist of only vector components (floats). The script looks for the corresponding words in the file word_vecs.words.txt. Given the master_reps.txt (output of get_reps.py) this is simple:
-#               cut -d ' ' -f 2- master_reps.txt > word_vecs.txt
-#               awk '{ print $1 }' master_reps.txt > word_vecs.words.txt
+# note:         word_vecs.txt should consist of only vector components (floats). The script looks for the corresponding words in the file word_vecs.words.txt. Given the my_reps.txt (output of get_reps.py) this is simple:
+#               cut -d ' ' -f 2- my_reps.txt > word_vecs.txt
+#               awk '{ print $1 }' my_reps.txt > word_vecs.words.txt
 #
 # output:       word_vecs.clusters.txt, consisting of word, cluster assignment, distance to cluster centroid
 
@@ -25,6 +25,11 @@ import numpy as np
 from scipy.cluster.vq import whiten
 from scipy.cluster.vq import kmeans
 from scipy.cluster.vq import vq
+
+if len(sys.argv)<3:
+    print "Usage: python get_clusters.py word_vecs.txt N_CLUST"
+    print "Perhaps necessary:\n\tcut -d ' ' -f 2- my_reps.txt > word_vecs.txt\n\tawk '{ print $1 }' my_reps.txt > word_vecs.words.txt"
+    sys.exit()
 
 N_CLUST = int(sys.argv[2])
 
