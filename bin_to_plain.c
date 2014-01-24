@@ -68,7 +68,9 @@ int main(int argc, char **argv) {
   FILE *fnb = fopen("google_reps.txt","w");
   for (int i = 0; i < words; i++) {
     for (int p = 0; p<max_w; p++){
-        fprintf(fnb,"%c",vocab[i*max_w+p]);
+        if (vocab[i*max_w+p]!='\0') {
+            fprintf(fnb,"%c",vocab[i*max_w+p]);
+        }
     }
     fprintf(fnb, "\t");
     for (int j = 0; j < size - 1; j++){
