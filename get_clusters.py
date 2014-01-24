@@ -25,6 +25,7 @@ import numpy as np
 from scipy.cluster.vq import whiten
 from scipy.cluster.vq import kmeans
 from scipy.cluster.vq import vq
+import pickle
 
 if len(sys.argv)<3:
     print "Usage: python get_clusters.py word_vecs.txt N_CLUST"
@@ -67,3 +68,7 @@ for i in range(len(words)):
 
 mean_distance = np.mean(distances)
 print 'Mean distance to centroid:',mean_distance
+
+# save the word-cluster assignments as numpy array
+with_assignment = np.column_stack((words,kmeans_assignments))
+pickle.dump(with_assignment,open("_master_dictionary_assigned.pk","wb"))
