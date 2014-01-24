@@ -10,7 +10,11 @@ import sys
 import numpy as np
 import wordcloud
 
+if len(sys.argv)<3:
+    sys.exit("Usage: python get_wordcloud.py wordlist.txt number")
+
 wordlist_name = sys.argv[1]
+cluster_number = sys.argv[2]
 wordlist_file = open(wordlist_name,'r')
 
 words = []
@@ -18,9 +22,11 @@ dists = []
 # the distances are to the centroid
 for line in wordlist_file:
     word = line.split()[0]
-    dist = int(line.split()[1])
-    words.append(word)
-    dists.append(dist)
+    cluster = line.split()[1]
+    dist = int(line.split()[2])
+    if cluster==cluster_number:
+        words.append(word)
+        dists.append(dist)
 
 max_dist = max(dists)*1.05
 weights = [max_dist - dist for dist in dists]
